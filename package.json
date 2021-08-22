@@ -10,6 +10,8 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^3.0.0-beta.0",
+    "@angular/google-maps": "^11.0.0",
     "@angular/animations": "~12.1.2",
     "@angular/cdk": "^12.2.2",
     "@angular/common": "~12.1.2",
@@ -25,6 +27,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@types/googlemaps": "3.39.12",
     "@angular-devkit/build-angular": "~12.1.2",
     "@angular/cli": "~12.1.2",
     "@angular/compiler-cli": "~12.1.2",

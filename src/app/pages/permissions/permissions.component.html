@@ -1,0 +1,18 @@
+<div>
+  <section class="example-section" [formGroup]="premissions">
+      <h4>Select your premissions:</h4>
+      <p><mat-checkbox formControlName="camera">camera</mat-checkbox></p>
+      <p><mat-checkbox formControlName="storage">storage</mat-checkbox></p>
+      <p><mat-checkbox formControlName="webSource">webSource</mat-checkbox></p>
+    </section>
+
+
+    <button
+    class="btn"
+    mat-raised-button
+    color="primary"
+    (click)="setPremissions()"
+  >
+    Primary
+  </button>
+</div>

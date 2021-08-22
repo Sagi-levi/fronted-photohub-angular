@@ -1,0 +1,85 @@
+<mat-tab-group>
+  <mat-tab label="camera">
+    <app-camera *ngIf="premissionsSettings.camera"></app-camera>
+  </mat-tab>
+
+  <mat-tab label="local storage">
+    <app-storage-pic *ngIf="premissionsSettings.storage"></app-storage-pic>
+  </mat-tab>
+
+  <mat-tab label="web">
+    <app-url-upload *ngIf="premissionsSettings.webSource"></app-url-upload>
+  </mat-tab>
+</mat-tab-group>
+<div>
+  <button mat-raised-button (click)="openDialog()">edit picture details</button>
+</div>
+<ng-template #callAPIDialog>
+  <form #userForm="ngForm" (ngSubmit)="onSend(userForm)">
+    <h2 matDialogTitle>edit picture details</h2>
+    <div>
+      <input
+        matInput
+        type="text"
+        placeholder="name"
+        name="name"
+        ngModel
+        required
+      />
+    </div>
+    <div>
+      <input
+        matInput
+        type="text"
+        placeholder="caption"
+        name="caption"
+        ngModel
+        required
+      />
+    </div>
+    <div>
+      <input
+        matInput
+        type="text"
+        placeholder="categories"
+        name="categories"
+        ngModel
+        required
+      />
+    </div>
+    <div>
+      <input
+        matInput
+        type="text"
+        placeholder="location"
+        name="location"
+        ngModel
+        required
+      />
+    </div>
+    <div>
+      <input
+        matInput
+        type="text"
+        placeholder="favorite"
+        name="favorite"
+        ngModel
+        required
+      />
+    </div>
+    <div>
+      <input
+        matInput
+        type="text"
+        placeholder="privateMode"
+        name="privateMode"
+        ngModel
+        required
+      />
+    </div>
+    <mat-dialog-actions align="end">
+      <button type="submit" mat-button>Submit</button>
+      <button mat-button matDialogClose="no">Cancel</button>
+    </mat-dialog-actions>
+  </form>
+</ng-template>

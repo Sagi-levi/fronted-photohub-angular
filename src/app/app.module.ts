@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //new
 
 import { HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //matirial
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -27,14 +29,30 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 //components
 import { AppComponent } from './components/appComponent/app.component';
 import { NavComponent } from './components/nav/nav.component';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { WelcomComponent } from './pages/welcom/welcom.component';
+import { PermissionsComponent } from './pages/permissions/permissions.component';
+import { UplodingsComponent } from './pages/uplodings/uplodings.component';
+import { CameraComponent } from './components/camera/camera.component';
+import { StoragePicComponent } from './components/storage-pic/storage-pic.component';
+import { UrlUploadComponent } from './components/url-upload/url-upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    GoogleMapsComponent,
+    WelcomComponent,
+    PermissionsComponent,
+    UplodingsComponent,
+    CameraComponent,
+    StoragePicComponent,
+    UrlUploadComponent
   ],
   imports: [
     //matirial
@@ -56,6 +74,7 @@ import { NavComponent } from './components/nav/nav.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatCheckboxModule,
 
     //built in imports
     BrowserModule,
@@ -63,8 +82,12 @@ import { NavComponent } from './components/nav/nav.component';
     BrowserAnimationsModule,
 
     //new
-    HttpClientModule
-
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDZDioY8D0NmiitCsqXxa5WIr_3N8FvrzM'
+    }),
+    FormsModule,
+    ReactiveFormsModule
 
     
   ],
