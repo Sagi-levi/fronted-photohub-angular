@@ -1,85 +1,65 @@
 <mat-tab-group>
   <mat-tab label="camera">
-    <app-camera *ngIf="premissionsSettings.camera"></app-camera>
+    <app-camera ></app-camera>
   </mat-tab>
 
   <mat-tab label="local storage">
-    <app-storage-pic *ngIf="premissionsSettings.storage"></app-storage-pic>
+    <app-storage-pic></app-storage-pic>
   </mat-tab>
 
   <mat-tab label="web">
-    <app-url-upload *ngIf="premissionsSettings.webSource"></app-url-upload>
+    <app-url-upload></app-url-upload>
   </mat-tab>
 </mat-tab-group>
 <div>
   <button mat-raised-button (click)="openDialog()">edit picture details</button>
 </div>
 <ng-template #callAPIDialog>
-  <form #userForm="ngForm" (ngSubmit)="onSend(userForm)">
-    <h2 matDialogTitle>edit picture details</h2>
-    <div>
-      <input
-        matInput
-        type="text"
-        placeholder="name"
-        name="name"
-        ngModel
-        required
-      />
+  <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+    categories
+    <div *ngFor="let category of categories">
+      <label>
+        <input type="checkbox" [value]="category.value" (change)="onCheckboxChange($event)" />
+      </label>
+      {{category.name}}
     </div>
     <div>
       <input
-        matInput
         type="text"
         placeholder="caption"
-        name="caption"
-        ngModel
+        formControlName="caption"
         required
       />
     </div>
     <div>
-      <input
-        matInput
-        type="text"
-        placeholder="categories"
-        name="categories"
-        ngModel
-        required
-      />
+      <app-google-maps (newItemEvent)="setLocation($event)"></app-google-maps>
     </div>
     <div>
-      <input
-        matInput
-        type="text"
-        placeholder="location"
-        name="location"
-        ngModel
-        required
-      />
+      <label>
+        favorite
+        <input
+          type="checkbox"
+          placeholder="favorite"
+          formControlName="favorite"
+        />
+      </label>
     </div>
     <div>
-      <input
-        matInput
-        type="text"
-        placeholder="favorite"
-        name="favorite"
-        ngModel
-        required
-      />
+      <label>
+        privateMode
+        <input
+          type="checkbox"
+          placeholder="privateMode"
+          formControlName="privateMode"
+          
+        />
+      </label>
     </div>
-    <div>
-      <input
-        matInput
-        type="text"
-        placeholder="privateMode"
-        name="privateMode"
-        ngModel
-        required
-      />
-    </div>
-    <mat-dialog-actions align="end">
-      <button type="submit" mat-button>Submit</button>
+
+    <input type="submit" value="Submit">
+    <mat-dialog-actions >
       <button mat-button matDialogClose="no">Cancel</button>
     </mat-dialog-actions>
   </form>
+  
 </ng-template>

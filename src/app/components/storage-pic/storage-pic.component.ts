@@ -7,33 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./storage-pic.component.css']
 })
 export class StoragePicComponent implements OnInit {
-  title = 'fileUpload';
-  images:any;
+  message:string
+  imagePath: any;
+  imgURL: any;
   constructor(private imageService: ImageService){}
   ngOnInit(){
   }
   selectImage(event:any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.images = file;
-    }
+    this.imageService.selectImage(event);
   }
 
-  onSubmit(){
-    const formData = new FormData();
-    formData.append('file', this.images);
-this.imageService.images=formData;
-console.log(this.imageService.images);
-
-  }
-
-
-  handleUpload(event:any) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-        console.log(reader.result);
-    };
-}
 }

@@ -1,0 +1,13 @@
+<h1>current categories</h1>
+<div *ngFor="let category of categories">
+  <div>{{ category.name }}</div>
+</div>
+<br>
+<form [formGroup]="newCategory" (ngSubmit)="submitForm()" novalidate>
+
+  <div>
+    value
+    <input required type="text" placeholder="value" formControlName="newCategory" />
+  </div>
+  <input type="submit" value="Submit">
+</form>

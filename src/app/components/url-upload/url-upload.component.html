@@ -1,1 +1,19 @@
-<p>url-upload works!</p>
+<h1>choose an image! and then press edit</h1>
+<div class="example-container">
+    <form>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter the photo you would like the search</mat-label>
+            <input [(ngModel)]="objectToSearch" name="something" matInput placeholder="cats">
+        </mat-form-field>
+        <button (click)="search()" mat-mini-fab color="primary">
+            <mat-icon>search</mat-icon>
+          </button>
+    </form>
+</div>
+<div>
+    must enter an image name!
+  <input type="text"  [(ngModel)]="filename" placeholder="image name" />
+</div>
+<ul *ngFor='let image of images'>
+    <img (click)="sendToService(image.src.medium)" src="{{image.src.medium}}">
+</ul>

@@ -1,1 +1,16 @@
-<p>camera works!</p>
+<div id="app">
+  <div><video #video id="video" width="640" height="480" autoplay></video></div>
+  <div><button id="snap" (click)="capture()">Snap Photo</button></div>
+  <div>
+    <canvas #canvas id="canvas" width="640" height="480"></canvas>
+  </div>
+  <div>
+      <h1>choose an image! and then press edit</h1>
+  </div>
+  <ul>
+    <li *ngFor="let c of captures">
+      <img (click)="sendToService(c)" src="{{ c }}" height="50" />
+    </li>
+  </ul>
+  <input type="text" [(ngModel)]="filename" placeholder="image name" />
+</div>

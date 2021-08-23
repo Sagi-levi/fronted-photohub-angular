@@ -7,25 +7,25 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
   styleUrls: ['./camera.component.css']
 })
 export class CameraComponent implements AfterViewInit {
-  constructor( private imageService: ImageService) {  }
-  WIDTH = 640;
-  HEIGHT = 480;
- 
+  uuidValue: string;
+  constructor(private imageService: ImageService) {
+    this.captures = [];
+  }
   @ViewChild("video")
   public video: ElementRef;
-  
+  error: any;
+  filename:string
   @ViewChild("canvas")
   public canvas: ElementRef;
-  
-  captures: string[] = [];
-  error: any;
-  currentImageId!:number;
-  file:any;
-  
+
+  public captures: Array<any>;
+
+  public ngOnInit() { }
+
   async ngAfterViewInit() {
     await this.setupDevices();
   }
-  
+
   async setupDevices() {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
@@ -44,23 +44,10 @@ export class CameraComponent implements AfterViewInit {
       }
     }
   }
-  
-  capture() {
-    this.drawImageToCanvas(this.video.nativeElement);
+
+  public capture() {
+    var context = this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0, 640, 480);
     this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
-    console.log(this.canvas.nativeElement.toDataURL("image/png"));
-    
-  }
-  upload(){
-    this.imageService.images=this.file;
-    alert(this.file.type+" "+this.file.name)
-    this.imageService.onSubmit();
-  }
-  
-  drawImageToCanvas(image: any) {
-    this.canvas.nativeElement
-    .getContext("2d")
-    .drawImage(image, 0, 0, this.WIDTH, this.HEIGHT);
   }
   convertDataUrlToBlob(dataUrl:any): Blob {
     const arr = dataUrl.split(',');
@@ -75,10 +62,13 @@ export class CameraComponent implements AfterViewInit {
 
     return new Blob([u8arr], {type: mime});
 }
-
-  chooseImage(currentImageId:number){
-    this.currentImageId= currentImageId;
-    alert(this.currentImageId)
-    this.file = new File([this.convertDataUrlToBlob(this.captures[this.currentImageId])],' .png', {type: `image/png`});
+  sendToService(c: any) {
+    if(!this.filename){
+      alert("you need to name the file first")
+      return
+    }
+    alert("image was picked,now edit the detalis")
+    let file=new File([this.convertDataUrlToBlob(c)], `${this.filename}.png`)
+    this.imageService.setWebImage(file);
   }
 }

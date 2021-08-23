@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class CategoriesService {
 
   constructor(private httpService :HttpService) { }
-  postCategories(categories: JSON) {
+  postCategories(categories: any) {
     this.httpService.postCategories(categories);
   }
   getCategories(): any {

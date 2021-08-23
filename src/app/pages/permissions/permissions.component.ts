@@ -2,7 +2,7 @@ import { PremissionsService } from './../../services/premissionsSevice/premissio
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {Router} from "@angular/router"
+import { Router } from "@angular/router"
 @Component({
   selector: 'app-permissions',
   templateUrl: './permissions.component.html',
@@ -14,16 +14,37 @@ export class PermissionsComponent implements OnInit {
   ngOnInit(): void {
   }
   premissions: FormGroup;
-
-  constructor(fb: FormBuilder,private premissionsService: PremissionsService,private router: Router) {
+  password: FormGroup;
+  existPassword: any
+  constructor(fb: FormBuilder, private premissionsService: PremissionsService, private router: Router) {
+    this.premissionsService.getCurrentPassword().subscribe((data: any)=>{
+      this.existPassword=data.password;
+      console.log(data);
+        
+    });
+   
     this.premissions = fb.group({
       camera: false,
-      storage:false,
-      webSource:false
+      location: false
+    });
+
+    this.password = fb.group({
+      password: this.existPassword
     });
   }
-  setPremissions(){
+  setPremissions() {
     this.premissionsService.postPremissions(this.premissions.value)
-    this.router.navigate(['/uploadings'])
+    this.router.navigate(['/screenThree'])
+  }
+  setPassword() {
+    if (this.password.value){
+      this.premissionsService.setPassword(this.password.value)
+      alert("password has been set")
+    }
+    
+    else {
+      alert("password is empty")
+    }
+
   }
 }

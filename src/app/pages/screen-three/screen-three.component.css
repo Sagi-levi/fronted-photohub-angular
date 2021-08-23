@@ -1,0 +1,12 @@
+.example-section {
+    margin: 12px 0;
+  }
+  div{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
+  

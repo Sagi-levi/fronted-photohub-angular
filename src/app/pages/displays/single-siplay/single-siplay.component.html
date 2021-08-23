@@ -1,0 +1,32 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>{{image.caption}}</mat-card-title>
+        <mat-card-subtitle>{{image.categories}}</mat-card-subtitle>
+    </mat-card-header>
+    <img class="image-size" mat-card-image src="http://localhost:8800/api/images/imagesSrc/{{image.src}}" alt="">
+    <mat-card-content>
+
+        <div>
+           location {{image.location}}
+        </div>
+
+         <div *ngIf="image.privateMode">
+             Privte picture
+         </div>
+         <div *ngIf="!image.privateMode">
+             public picture
+         </div>
+         <div *ngIf="image.favorite">
+             favorite picture
+         </div>
+         <div *ngIf="!image.favorite">
+             non favorite picture
+         </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="openDialog()">
+           edit
+        </button>
+
+    </mat-card-actions>
+</mat-card>

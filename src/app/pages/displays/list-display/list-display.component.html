@@ -1,0 +1,8 @@
+<div *ngIf="images">
+
+    <ul  *ngFor='let image of images '>
+        <li>
+            <app-single-siplay [image]='image'></app-single-siplay>
+        </li>
+    </ul>
+</div>

@@ -41,6 +41,14 @@ import { UplodingsComponent } from './pages/uplodings/uplodings.component';
 import { CameraComponent } from './components/camera/camera.component';
 import { StoragePicComponent } from './components/storage-pic/storage-pic.component';
 import { UrlUploadComponent } from './components/url-upload/url-upload.component';
+import { GirdDisplayComponent } from './pages/displays/gird-display/gird-display.component';
+import { ListDisplayComponent } from './pages/displays/list-display/list-display.component';
+import { SingleSiplayComponent } from './pages/displays/single-siplay/single-siplay.component';
+import { DialogImageComponent } from './dialog-image/dialog-image.component';
+import { SlideShowComponent } from './pages/displays/slide-show/slide-show.component';
+import { EditCategoriesComponent } from './pages/edit-categories/edit-categories.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ScreenThreeComponent } from './pages/screen-three/screen-three.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +60,15 @@ import { UrlUploadComponent } from './components/url-upload/url-upload.component
     UplodingsComponent,
     CameraComponent,
     StoragePicComponent,
-    UrlUploadComponent
+    UrlUploadComponent,
+    GirdDisplayComponent,
+    ListDisplayComponent,
+    SingleSiplayComponent,
+    DialogImageComponent,
+    SlideShowComponent,
+    EditCategoriesComponent,
+    LoginComponent,
+    ScreenThreeComponent
   ],
   imports: [
     //matirial
@@ -87,7 +103,7 @@ import { UrlUploadComponent } from './components/url-upload/url-upload.component
       apiKey: 'AIzaSyDZDioY8D0NmiitCsqXxa5WIr_3N8FvrzM'
     }),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
 
     
   ],
