@@ -1,3 +1,4 @@
+import { PrivateModeService } from 'src/app/services/privateModeService/private-mode.service';
 import { PremissionsService } from './../../services/premissionsSevice/premissions.service';
 import { CategoriesService } from './../../services/categoriesService/categories.service';
 import { ImageService } from './../../services/imageService/image.service';
@@ -16,15 +17,22 @@ export class UplodingsComponent implements OnInit {
   categories: any
   lat: any;
   lng: any;
+  privateMode:any
   fileSrcEventHander($event: any) {
     this.fileSrc = $event;
   }
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private CategoriesService: CategoriesService, private imageService: ImageService, private premissionsService: PremissionsService, public dialog: MatDialog) {
+  constructor(private privateModeService:PrivateModeService,private fb: FormBuilder, private CategoriesService: CategoriesService, private imageService: ImageService, private premissionsService: PremissionsService, public dialog: MatDialog) {
+   this.privateModeService.getPrivateStat().subscribe((data:any)=>{
+     if(data.secretMode=="true")
+     this.privateMode=data.secretMode;
+   })
+   
     this.premissionsService.getPremissions().subscribe((data: any) => {
       this.premissionsSettings = data;
     });
+    
 
     this.CategoriesService.getCategories().subscribe((data: any) => {
       this.categories = data;
@@ -69,7 +77,6 @@ export class UplodingsComponent implements OnInit {
     if (this.form.status === 'INVALID') {
       alert("you have to fill all fields")
     } else {
-      console.log(this.form.value)
       this.dialog.closeAll(); // Close opened diaglo
       // do whatever you want to do with your data
       this.imageService.setImageJson(this.form)

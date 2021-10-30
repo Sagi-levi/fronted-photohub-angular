@@ -1,1 +1,7 @@
-<p>slide-show works!</p>
+<div class="containerGrid">
+  <carousel>
+    <div class="carousel-cell" *ngFor="let photo of images">
+      <img  src="http://localhost:8800/api/images/imagesSrc/{{photo.src}}" />
+    </div>
+  </carousel>
+</div>

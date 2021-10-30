@@ -1,4 +1,7 @@
 .example-card {
     max-width: 400px;
   }
-  
+  .image-size{
+    width: 300px;
+    height: 300px;
+  }

@@ -30,6 +30,7 @@ export class EditCategoriesComponent implements OnInit {
     } else {
       this.postcatefory(this.newCategory.value)
     }
+    
     this.refreshPage()
   }
   refreshPage() {

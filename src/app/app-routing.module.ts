@@ -1,3 +1,4 @@
+import { SlideShowComponent } from './pages/displays/slide-show/slide-show.component';
 import { EditCategoriesComponent } from './pages/edit-categories/edit-categories.component';
 import { GirdDisplayComponent } from './pages/displays/gird-display/gird-display.component';
 import { ListDisplayComponent } from './pages/displays/list-display/list-display.component';
@@ -15,10 +16,10 @@ const routes: Routes = [
   {path:'uploadings',component:UplodingsComponent},
   {path:'listDisplay',component:ListDisplayComponent},
   {path:'gridDisplay',component:GirdDisplayComponent},
-  {path:'slideShow',component:GirdDisplayComponent},
   {path:'editCategories',component:EditCategoriesComponent},
   {path:'login',component:LoginComponent},
   {path:'screenThree',component:ScreenThreeComponent},
+  {path:'slideShow',component:SlideShowComponent},
 ];
 
 @NgModule({

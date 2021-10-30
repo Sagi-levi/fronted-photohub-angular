@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 //matirial
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -49,6 +50,8 @@ import { SlideShowComponent } from './pages/displays/slide-show/slide-show.compo
 import { EditCategoriesComponent } from './pages/edit-categories/edit-categories.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ScreenThreeComponent } from './pages/screen-three/screen-three.component';
+import { CarouselComponent } from './pages/displays/carousel/carousel.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,9 @@ import { ScreenThreeComponent } from './pages/screen-three/screen-three.componen
     SlideShowComponent,
     EditCategoriesComponent,
     LoginComponent,
-    ScreenThreeComponent
+    ScreenThreeComponent,
+    CarouselComponent,
+    AboutComponent
   ],
   imports: [
     //matirial
@@ -104,6 +109,7 @@ import { ScreenThreeComponent } from './pages/screen-three/screen-three.componen
     }),
     FormsModule,
     ReactiveFormsModule,
+    IvyCarouselModule,
 
     
   ],

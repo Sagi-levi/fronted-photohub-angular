@@ -15,9 +15,8 @@ export class LoginComponent implements OnInit {
     })
   }
 login(){
-  console.log(this.password.value);
   
-  this.PrivateModeService.setPrivateStat(this.password.value).subscribe(data=>{
+  this.PrivateModeService.loginPrivateStat(this.password.value).subscribe(data=>{
     alert(data)
   })
 }

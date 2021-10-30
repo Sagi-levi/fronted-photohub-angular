@@ -19,7 +19,6 @@ export class PermissionsComponent implements OnInit {
   constructor(fb: FormBuilder, private premissionsService: PremissionsService, private router: Router) {
     this.premissionsService.getCurrentPassword().subscribe((data: any)=>{
       this.existPassword=data.password;
-      console.log(data);
         
     });
    

@@ -1,10 +1,8 @@
-
-import { map } from 'rxjs/operators';
 import { PrivateModeService } from './../../../services/privateModeService/private-mode.service';
 import { ImageService } from './../../../services/imageService/image.service';
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list-display',
@@ -15,26 +13,57 @@ export class ListDisplayComponent implements OnInit {
   images: any[];
   isFavIsPriv: FormGroup
   isFav: any
-  count=0;
+  privateMode: any;
+  captionSearch: any;
   constructor(fb: FormBuilder, private imageService: ImageService, private privateModeService: PrivateModeService) {
+    this.privateModeService.getPrivateStat().subscribe((data:any)=>{
+      if(data.secretMode=="true")
+      this.privateMode=data.secretMode;
+    })
     this.images = [];
-    // this.isFavIsPriv=({isFav:this.isFav,isPrivate:this.privateModeService.getPrivateStat()})
+    
     this.isFavIsPriv = fb.group({
-      isfav: "true",
-      isPrivate: "true"
+      isFav: new FormControl(false),
+      isPrivate: new FormControl(false),
     })
     
-    this.imageService.getAllImagesJsons(this.isFavIsPriv.value).subscribe((data: any) => {
-console.log("dataaa",data);
+    let afterParse= {isFav:`${this.isFavIsPriv.value.isFav}`,isPrivate:`${this.isFavIsPriv.value.isPrivate}`}
+    this.imageService.getAllImagesJsons(afterParse).subscribe((data: any) => {
 
-      while (data[this.count]) {
-        console.log(this.count);
-        this.images.push(data[this.count]);
-        this.count += 1
+
+      for (let i = 0; i < data.length; i++) {
+
+        if(data[i]){ //dismiss the emty ones
+          if(data[i].src===undefined){//dismiss the emty ones
+            continue
+          }
+          data[i].location= data[i].location.split(",")
+          this.images.push(data[i]);
+
+        } 
       }
-      this.count=0
     });
   }
+  searchByCaption(){
+    this.images=this.images.filter((x:any)=>x.caption.includes(this.captionSearch))
+  }
+  setDisplaySettings(){
+    let afterParse= {isFav:`${this.isFavIsPriv.value.isFav}`,isPrivate:`${this.isFavIsPriv.value.isPrivate}`}
+
+    
+     this.images=[];
+     this.imageService.getAllImagesJsons(afterParse).subscribe((data: any) => {
+       for (let i = 0; i < data.length; i++) {
+         if(data[i]){ //dismiss the emty ones
+           if(data[i].src===undefined){//dismiss the emty ones
+             continue
+           }
+           data[i].location= data[i].location.split(",")
+           this.images.push(data[i]);
+         } 
+       }
+     });
+   }
   ngOnInit(): void {
   }
 }

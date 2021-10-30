@@ -7,19 +7,19 @@
     <mat-card-content>
 
         <div>
-           location {{image.location}}
+           <app-google-maps [displayOnly]="display" [latSTR]="image.location[0]" [lngSTR]="image.location[1]"></app-google-maps>
         </div>
 
-         <div *ngIf="image.privateMode">
+         <div *ngIf="image.privateMode ==='true'">
              Privte picture
          </div>
-         <div *ngIf="!image.privateMode">
+         <div *ngIf="image.privateMode==='false'">
              public picture
          </div>
-         <div *ngIf="image.favorite">
+         <div *ngIf="image.favorite==='true'">
              favorite picture
          </div>
-         <div *ngIf="!image.favorite">
+         <div *ngIf="image.favorite==='false'">
              non favorite picture
          </div>
     </mat-card-content>

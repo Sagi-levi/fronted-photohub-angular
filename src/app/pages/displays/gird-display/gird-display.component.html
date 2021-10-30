@@ -1,1 +1,41 @@
-<p>gird-display works!</p>
+<section [formGroup]="isFavIsPriv">
+  <h4>Select your picture display:</h4>
+  <p><mat-checkbox formControlName="isFav">allow favorite</mat-checkbox></p>
+  <p><mat-checkbox *ngIf="privateMode" formControlName="isPrivate">allow private</mat-checkbox></p>
+
+</section>
+<button
+class="btn"
+mat-raised-button
+color="primary"
+(click)="setDisplaySettings() "
+>
+set Display Settings
+</button>
+<br>
+<div>
+
+  <mat-form-field class="example-form-field" appearance="fill">
+    <mat-label>caption</mat-label>
+    <input matInput type="text" [(ngModel)]="captionSearch">
+    <button *ngIf="captionSearch" matSuffix mat-icon-button aria-label="Clear" (click)="captionSearch=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <button
+  class="btn"
+  mat-raised-button
+  color="primary"
+  (click)="searchByCaption() "
+  >
+  search By Caption
+  </button>
+</div>
+<br>
+<div class="contan" *ngIf="images">
+  <div class="row">
+    <div class="column" *ngFor="let image of images">
+      <app-single-siplay [image]="image"></app-single-siplay>
+    </div>
+  </div>
+</div>

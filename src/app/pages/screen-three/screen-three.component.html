@@ -1,11 +1,8 @@
 <div>
-<form>
-    <section  [formGroup]="librarySetup" (ngSubmit)="submitForm()">
+    <form  [formGroup]="librarySetup" (ngSubmit)="submitForm()">
         <p><input id="name" placeholder="library name name" formControlName="name" required></p>
         <p><input id="description" placeholder="description" formControlName="description" required></p>
-    </section> 
-    
-    <input type="submit" value="save library">
+    <input type="submit" value="submit">
   </form>
   <br>
 </div>

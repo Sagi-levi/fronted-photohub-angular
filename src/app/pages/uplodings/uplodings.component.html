@@ -1,5 +1,5 @@
 <mat-tab-group>
-  <mat-tab label="camera">
+  <mat-tab *ngIf="premissionsSettings.camera" label="camera">
     <app-camera ></app-camera>
   </mat-tab>
 
@@ -32,7 +32,7 @@
       />
     </div>
     <div>
-      <app-google-maps (newItemEvent)="setLocation($event)"></app-google-maps>
+      <app-google-maps *ngIf="premissionsSettings.location" (newItemEvent)="setLocation($event)"></app-google-maps>
     </div>
     <div>
       <label>
@@ -48,10 +48,10 @@
       <label>
         privateMode
         <input
+        *ngIf="privateMode"
           type="checkbox"
           placeholder="privateMode"
           formControlName="privateMode"
-          
         />
       </label>
     </div>

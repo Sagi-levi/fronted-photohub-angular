@@ -9,12 +9,11 @@ import { DialogImageComponent } from '../../../dialog-image/dialog-image.compone
 })
 export class SingleSiplayComponent implements OnInit {
   @Input() image: any;
+  display="true"
   constructor(public dialog: MatDialog) {
-    
   }
   
   ngOnInit(): void {
-    console.log(this.image);
   }
   openDialog() {
     this.dialog.open(DialogImageComponent,{data:{image: this.image}})

@@ -5,16 +5,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PrivateModeService {
+  constructor(private httpService: HttpService) { }
   loguotPrivateStat() {
-    
    return this.httpService.logoutPrivateStat()
   }
   getPrivateStat() {
    return this.httpService.getPrivateStat()
   }
-  setPrivateStat(password:any){
+  loginPrivateStat(password:any){
     return this.httpService.setPrivateStat(password)
   }
   
-  constructor(private httpService: HttpService) { }
 }

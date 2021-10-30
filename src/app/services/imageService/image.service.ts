@@ -21,7 +21,6 @@ export class ImageService {
       this.image = file;
       this.fileName=file.name
     }
-    console.log("service",this.image);  //works
   }
   setWebImage(fileImage:any){
     this.image = fileImage;
@@ -33,13 +32,18 @@ export class ImageService {
     imageJson.patchValue({name:this.fileName})
     
     this.imageJson=imageJson
-    console.log("כע",this.imageJson.value);
     
   }
+  setEdit(imageJson:FormGroup){
+    this.imageJson=imageJson
+  }
   onSubmit(){
-    console.log("service filename",this.fileName);
     this.httpService.uploadPicSrc(this.image);
     this.httpService.uploadPicJson(this.imageJson.value);
+  }
+  edit(){
+    this.httpService.uploadPicJson(this.imageJson.value);
+
   }
   getAllImagesJsons(isFavIsPriv:any){
    return this.httpService.getAllImagesJsons(isFavIsPriv);

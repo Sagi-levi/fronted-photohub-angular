@@ -1,0 +1,26 @@
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Style the images inside the grid  */
+.column img {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+img {
+  width: 150px;
+  height: 200px;
+  border: 1px solid black;
+}
+
+.contan {
+  position: absolute;
+  top: 35%;
+}

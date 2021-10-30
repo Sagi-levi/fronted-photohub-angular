@@ -1,20 +1,50 @@
-<mat-card class="example-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{data.image.caption}}</mat-card-title>
-        <mat-card-subtitle>{{data.image.categories}}</mat-card-subtitle>
-    </mat-card-header>
-    <img class="image-size" mat-card-image src="{{data.image.src}}" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-        <p>
 
-        </p>
-        <div>
-            {{data.image.location}}
-        </div>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>PrivteMode</button>
-        <button mat-button>Favorite</button>
-    </mat-card-actions>
-</mat-card>
+<form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+  categories
+  <div *ngFor="let category of categories">
+    <label>
+      <input
+        type="checkbox"
+        [value]="category.value"
+        (change)="onCheckboxChange($event)"
+      />
+    </label>
+    {{ category.name }}
+  </div>
+  <div>
+    <input
+      type="text"
+      placeholder="caption"
+      formControlName="caption"
+      required
+    />
+  </div>
+  <div>
+    <app-google-maps *ngIf="premissionsSettings.location" (newItemEvent)="setLocation($event)"></app-google-maps>
+  </div>
+  <div>
+    <label>
+      favorite
+      <input
+        type="checkbox"
+        placeholder="favorite"
+        formControlName="favorite"
+      />
+    </label>
+  </div>
+  <div>
+    <label *ngIf="privateMode">
+      privateMode
+      <input
+        type="checkbox"
+        placeholder="privateMode"
+        formControlName="privateMode"
+      />
+    </label>
+  </div>
+
+  <input type="submit" value="Submit" />
+  <mat-dialog-actions>
+    <button mat-button matDialogClose="no">Cancel</button>
+  </mat-dialog-actions>
+</form>
