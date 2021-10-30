@@ -15,5 +15,4 @@ export class PrivateModeService {
   loginPrivateStat(password:any){
     return this.httpService.setPrivateStat(password)
   }
-  
 }
